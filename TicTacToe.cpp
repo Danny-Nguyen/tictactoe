@@ -1,9 +1,10 @@
 #include <iostream>
+#include <string> 
 
 class TicTacToe {
     public:
         TicTacToe() {
-            turn_count = 0;
+            turn_count_ = 0;
         }
         void CreateBoard() {
             for (int i = 0; i < 9; i++) { // in matrix of 9 values give each square a unique value to assign an x or o to.
@@ -18,62 +19,64 @@ class TicTacToe {
                 std::cout << std::endl;
             }
         }
-        void GetPlayerChoice() {
-            char Player;
-            char input;
-            std::cout << "Please enter a position to place your move (1-9)." << std::endl;
-            std::cin >> input;
-
-            if (turn_count % 2 == 0) {
-                Player = 'X';
+        void GetPlayerChoice() { // prompts user for a square for their turn, uses turn count to determine X/O turn
+            char choice;
+            std::cout << "Please select a square (1-9) for your move" << std::endl;
+            std::cin >> choice;
+            char player_type;
+            if (turn_count_ % 2 == 0) {
+                player_type = 'X';
             }
-
             else {
-                Player = 'O';
+                player_type = 'O';
             }
-            std::cout << Player << std::endl;
-            switch(input) {
-                case '1': 
-                    arr_[0][0] = Player;
-                    break;
-                case '2': 
-                    arr_[0][1] = Player;
-                    break;
-                case '3': 
-                    arr_[0][2] = Player;
-                    break;
-                case '4': 
-                    arr_[1][0] = Player;
-                    break;
-                case '5': 
-                    arr_[1][1] = Player;
-                    break;
-                case '6': 
-                    arr_[1][2] = Player;
-                    break;
-                case '7': 
-                    arr_[2][0] = Player;
-                    break;
-                case '8': 
-                    arr_[2][1] = Player;
-                    break;
-                case '9': 
-                    arr_[2][2] = Player;
-                    break;
+            switch (choice)
+            {
+            case '1': // changes corresponding square to a player type
+                PlaceMarker(0,0,player_type);
+                break;
+            case '2':
+                PlaceMarker(0,1,player_type);
+                break;
+            case '3':
+                PlaceMarker(0,2,player_type);
+                break;
+            case '4':
+                PlaceMarker(1,0,player_type);
+                break;
+            case '5':
+                PlaceMarker(1,1,player_type);
+                break;
+            case '6':
+                PlaceMarker(1,2,player_type);
+                break;
+            case '7':
+                PlaceMarker(2,0,player_type);
+                break;
+            case '8':
+                PlaceMarker(2,1,player_type);
+                break;
+            case '9':
+                PlaceMarker(2,2,player_type);
+                break;
+            default:
+                break;
             }
             DisplayBoard();
-            turn_count ++;
+            turn_count_++;
+        }
+        void PlaceMarker(int i, int j, char marker) { // function to update a square based on player choice
+            arr_[i][j] = marker;
         }
     private:
         char arr_[3][3];
-        int turn_count;
+        int turn_count_;
 };
 
 int main() {
     TicTacToe Game;
     Game.CreateBoard();
     Game.DisplayBoard();
-    
     for (int i = 0; i < 9; i++) {
         Game.GetPlayerChoice();
     }
