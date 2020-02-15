@@ -7,6 +7,15 @@ class TicTacToe {
                 arr_[i / 3][i % 3] = '1' + i; // adding char to int type casts the char to an int resulting in no type error
             }
         }
+
+        void DisplayBoard() {
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    std::cout << "[" << arr_[i][j] << " ";
+                }
+                std::cout << std::endl;
+            }
+        }
         
     private:
         char arr_[3][3];
