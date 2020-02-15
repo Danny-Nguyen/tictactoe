@@ -62,6 +62,7 @@ class TicTacToe {
             default:
                 break;
             }
+            DisplayBoard();
             turn_count_++;
         }
         void PlaceMarker(int i, int j, char marker) { // function to update a square based on player choice
@@ -76,9 +77,7 @@ int main() {
     TicTacToe Game;
     Game.CreateBoard();
     Game.DisplayBoard();
-    for (int i = 0; i < 9; i++)
-    {
+    for (int i = 0; i < 9; i++) {
         Game.GetPlayerChoice();
-        Game.DisplayBoard();
     }
 }
